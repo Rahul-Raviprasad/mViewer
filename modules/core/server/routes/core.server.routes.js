@@ -9,7 +9,8 @@ module.exports = function (app) {
 
   // Return a 404 for all undefined api, module or lib routes
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
+  app.route('/connectMongo').get(core.createConnection);
 
   // Define application route
-  app.route('/*').get(core.renderIndex);
+  app.route('/home').get(core.renderIndex);
 };
