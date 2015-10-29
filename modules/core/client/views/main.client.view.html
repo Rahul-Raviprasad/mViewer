@@ -1,36 +1,37 @@
+<div ng-controller="MainController">
 <div class="header">
     <div class="col-md-9">
         <div class="navigation float">
             <ul   class="logo">
                 <li>
-                    <img src="images/viewer.png">
-                    <img src="images/betaversion.png" class="beta">
+                    <img src="modules/core/client/img/viewer.png">
+                    <img src="modules/core/client/img/betaversion.png" class="beta">
                 </li>
             </ul>
 
         </div>
         <div class="nav-sub float">
             <ul>
-                <li class="top-line"><img src="images/top-line.png"></li>
+                <li class="top-line"><img src="modules/core/client/img/top-line.png"></li>
                 <li class="nav-bar">
-                    <a href="#"><img src="images/mangograph-1.png"><span class="nav-text">Mango Graph</span></a>
+                    <a href="#"><img src="modules/core/client/img/mangograph-1.png"><span class="nav-text">Mango Graph</span></a>
                 </li>
-                <li class="top-line"><img src="images/top-line.png"></li>
+                <li class="top-line"><img src="modules/core/client/img/top-line.png"></li>
 
                 <li class="nav-bar">
-                    <a href="#"><img src="images/serverstatictis.png"><span class="nav-text">Server Statistics</span> </a>
+                    <a href="#"><img src="modules/core/client/img/serverstatictis.png"><span class="nav-text">Server Statistics</span> </a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="col-md-3">
         <div class="col-wrapper-search">
-            <div class="search-icon"><img src="images/searchicon.png"></div>
+            <div class="search-icon"><img src="modules/core/client/img/searchicon.png"></div>
             <div class="search-inputs">
                 <input class="search" placeholder="Search">
             </div>
             <div class="logout">
-                <img src="images/logout.png">
+                <img src="modules/core/client/img/logout.png">
             </div>
         </div>
 
@@ -42,27 +43,27 @@
     <div class="col-md-1">
         <div class="left-content" >
             <a href="#"><div class="left-content-box">
-                <div><img src="images/db.png"></div>
+                <div><img src="modules/core/client/img/db.png"></div>
                 <div>DATABASE</div>
             </div></a>
             <a href="#"><div class="left-content-box">
-                <div><img src="images/collection.png"></div>
+                <div><img src="modules/core/client/img/collection.png"></div>
                 <div>COLLECTION</div>
             </div></a>
             <a href="#"><div class="left-content-box">
-                <div><img src="images/grids.png"></div>
+                <div><img src="modules/core/client/img/grids.png"></div>
                 <div>GRIDS</div>
             </div></a>
             <a href="#"><div class="left-content-box">
-                <div><img src="images/help.png"></div>
+                <div><img src="modules/core/client/img/help.png"></div>
                 <div>HELP</div>
             </div></a>
             <a href="#"><div class="left-content-box">
-                <div>	<img src="images/console.png"></div>
+                <div>	<img src="modules/core/client/img/console.png"></div>
                 <div>CONSOLE</div>
             </div></a>
             <a href="#"><div class="left-content-box">
-                <div><img src="images/setting.png"></div>
+                <div><img src="modules/core/client/img/setting.png"></div>
                 <div>SETTINGS</div>
             </div></a>
         </div>
@@ -80,9 +81,9 @@
                 </div>
 
                 <div class="right-content-footer">
-                    <div class="btn-create-db" data-toggle="modal" data-target="#myModal"><input type="button" class="create-db-button" value="Create New Database"></div>
+                    <div class="btn-create-db" data-toggle="modal" data-target="#myModal"><input type="button" class="create-db-button" value="Create New Database" ng-click=open()></div>
                     <div class="plogo">
-                        <img src="images/pramatiideas.png">
+                        <img src="modules/core/client/img/pramatiideas.png">
                         <div class="Powered-by">POWERED BY</div>
                     </div>
 
@@ -110,13 +111,20 @@
         </div>
     </div>
 </div>
-
+</div>
+<script type="text/ng-template" id="newDBModal.html">
 <div class="new-db">
-    <span class="db-text">Please enter DB Name</span>
+  <div class="modal-header">
+    <h3 class="modal-title db-text">Please enter DB Name</h3>
+  </div>
+<div class="modal-body">
     <form class="db-form">
         <input class="db-name-textfield" placeholder="Enter DB Name">
-        <button type="button" class="btn btn-primary">SUBMIT</button>
-        <button type="button" class="btn btn-primary">CANCEL</button>
     </form>
-
 </div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="ok()">SUBMIT</button>
+  <button type="button" class="btn btn-primary" ng-click="cancel()">CANCEL</button>
+</div>
+</div>
+</script>
