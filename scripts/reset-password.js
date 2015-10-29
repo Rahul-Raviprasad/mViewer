@@ -4,6 +4,7 @@ var nodemailer = require('nodemailer'),
   config = require('../config/config'),
   mg = require('../config/lib/mongoose');
 
+
 var transporter = nodemailer.createTransport(config.mailer.options);
 var link = 'reset link here'; // PUT reset link here
 var email = {
