@@ -1,6 +1,6 @@
 'use strict';
 var MongoClient = require('mongodb').MongoClient;
-
+var dbInstance = null;
 /**
  * Render the main application page
  */
@@ -33,7 +33,7 @@ var createCollection = function(db, collectionName, callback) {
  db.createCollection(collectionName, {capped:true, size:10000, max:1000, w:1}, function(err, collection) {
    callback(err, collection);
  });
-}
+};
 
 var listDatabases = function(db, callback) {
   // List all the available databases
@@ -41,14 +41,23 @@ var listDatabases = function(db, callback) {
     callback(err, dbs.databases);
     db.close();
   });
-}
+};
 
 var getServerInfo = function(db, callback) {
   db.admin().serverStatus(function(err, info) {
     callback(err, info);
     db.close();
   });
-}
+};
+
+exports.apis = {
+  getServerInfo: getServerInfo,
+  listDatabases: listDatabases,
+  listCollections: listCollections,
+  listDocuments: listDocuments,
+  createCollection: createCollection,
+  insertDocument: insertDocument
+};
 
 exports.createConnection = function (req, res) {
   var host = req.query.host, port = req.query.port,
@@ -66,58 +75,8 @@ exports.createConnection = function (req, res) {
       return;
     }
     console.log("Connected correctly to server.");
-    // db.listCollections(function(err, collections){
-    //   console.log('success');
-    //   res.json({data: collections});
-    // });
-    //db.close();
-    //  insertDocument(db,'restaurants', {
-    //    "address" : {
-    //       "street" : "2 Avenue",
-    //       "zipcode" : "10075",
-    //       "coord" : [ -73.9557413, 40.7720266 ]
-    //    },
-    //    "cuisine" : "Italian",
-    //    "grades" : [
-    //       {
-    //          "date" : new Date("2014-10-01T00:00:00Z"),
-    //          "grade" : "A",
-    //          "score" : 11
-    //       }
-    //    ],
-    //    "name" : "Vella",
-    //    "restaurant_id" : "41704620"
-    // },function(err, result) {
-    //   //db.close();
-    //   console.log('insertion successful'+ result);
-    // });
-
-    // listDocuments(db, 'restaurants', function(err, documents){
-    //   console.log('found documents'+ documents);
-    //   res.json({data: documents});
-    //   db.close();
-    // });
-
-    createCollection(db, 'testing', function(err, collection){
-      console.log('create collection');
-    });
-    listCollections(db, function(err, collections){
-       console.log('found collections');
-       res.json(collections);
-    });
-
-    // listDatabases(db, function(err, databases){
-    //    console.log('found databases');
-    //    res.json({data: databases});
-    // });
-
-    // getServerInfo(db, function(err, info) {
-    //   if (err) {
-    //     res.json({error: err});
-    //   }
-    //   console.log('server Info:');
-    //   res.json(info);
-    // })
+    module.exports.dbInstance = db; // save the db instance for later use; TODO - Use session
+    res.send('connection successful');
   });
 };
 /**
@@ -134,7 +93,6 @@ exports.renderServerError = function (req, res) {
  * Performs content-negotiation on the Accept HTTP header
  */
 exports.renderNotFound = function (req, res) {
-
   res.status(404).format({
     'text/html': function () {
       res.render('modules/core/server/views/404', {

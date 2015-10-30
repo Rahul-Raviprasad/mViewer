@@ -9,17 +9,28 @@ $scope.cancel = function () {
 };
 });
 angular.module('core').controller('MainController', ['$scope', '$http', '$location', '$modal',
-  function ($scope, http, location, $uibModal) {
+  function ($scope, $http, $location, $uibModal) {
 
 $scope.open = function () {
     var modalInstance = $uibModal.open({
-          animation: $scope.animationsEnabled,
+          animation: true,
           templateUrl: 'newDBModal.html',
           controller: 'ModalInstanceCtrl',
           size: 'small',
           resolve: {
           }
         });
-      }
+
+    //     $http({
+    //       method: 'GET',
+    //       url: '/listDatabases',
+    //     }).then(function successCallback(response) {
+    //        console.log(JSON.stringify(response));
+    // }, function errorCallback(response) {
+    //   // called asynchronously if an error occurs
+    //   // or server returns response with an error status.
+    //   console.log('failure');
+    // });
+}
   }
 ]);
