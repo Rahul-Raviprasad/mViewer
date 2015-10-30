@@ -11,6 +11,38 @@ module.exports = function (app) {
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
   app.route('/connectMongo').get(core.createConnection);
 
+  //Api routes
+
+  app.route('/listDatabases').get(function(req, res){
+    //console.log('db instance'+ req.session.dbInstance);
+    core.apis.listDatabases(core.dbInstance, function(err, databases){
+      if (err) {
+        res.json({error: err});
+      }
+      res.json({data: databases});
+    });
+  });
+
+  app.route('/listCollections').get(function(req, res) {
+    core.apis.listCollections(core.dbInstance, function(err, collections){
+      if(err) {
+        res.json({error: err});
+      }
+      res.json({data: collections});
+    });
+  });
+
+  app.route('/listDocuments').get(function(req, res) {
+    var collection = req.query.collection;
+    console.log(collection);
+    core.apis.listDocuments(core.dbInstance, collection, function(err, documents){
+      if(err) {
+        res.json({error: err});
+      }
+      res.json({data: documents});
+    });
+  });
+
   // Define application route
   app.route('/home').get(core.renderIndex);
 };
