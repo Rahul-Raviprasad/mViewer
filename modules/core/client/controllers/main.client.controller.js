@@ -11,6 +11,14 @@ $scope.cancel = function () {
 angular.module('core').controller('MainController', ['$scope', '$http', '$location', '$modal',
   function ($scope, $http, $location, $uibModal) {
 
+    $scope.someobj = {
+      greetings: ["hi", "hello", "welcome"],
+      parent: {
+          child: "name",
+          age: 42
+      }
+    };
+
 $scope.open = function () {
     var modalInstance = $uibModal.open({
           animation: true,

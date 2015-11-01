@@ -1,117 +1,190 @@
 <div ng-controller="MainController">
-<div class="header">
-    <div class="col-md-9">
-        <div class="navigation float">
-            <ul   class="logo">
-                <li>
-                    <img src="modules/core/client/img/viewer.png">
-                    <img src="modules/core/client/img/betaversion.png" class="beta">
-                </li>
-            </ul>
+
+
+    <nav id="topHeader" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <div class="row">
+              <img src="modules/core/client/img/viewer.png">
+              <img src="modules/core/client/img/betaversion.png" class="beta">
+              <img src="modules/core/client/img/top-line.png" class="gap">
+            </div>
+          </a>
 
         </div>
-        <div class="nav-sub float">
-            <ul>
-                <li class="top-line"><img src="modules/core/client/img/top-line.png"></li>
-                <li class="nav-bar">
-                    <a href="#"><img src="modules/core/client/img/mangograph-1.png"><span class="nav-text">Mango Graph</span></a>
-                </li>
-                <li class="top-line"><img src="modules/core/client/img/top-line.png"></li>
-
-                <li class="nav-bar">
-                    <a href="#"><img src="modules/core/client/img/serverstatictis.png"><span class="nav-text">Server Statistics</span> </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="col-wrapper-search">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#">
+                <img src="modules/core/client/img/mangograph-1.png">
+                MONGO GRAPH
+                <img src="modules/core/client/img/top-line.png" class="gap">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="modules/core/client/img/serverstatictis.png"> SERVER STATISTICS
+              </a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" alt="logout"><img src="modules/core/client/img/logout.png"></a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
             <div class="search-icon"><img src="modules/core/client/img/searchicon.png"></div>
-            <div class="search-inputs">
-                <input class="search" placeholder="Search">
-            </div>
-            <div class="logout">
-                <img src="modules/core/client/img/logout.png">
-            </div>
+            <input type="text" class="form-control search" placeholder="Search...">
+          </form>
         </div>
+      </div>
+    </nav>
 
-
-    </div>
-</div>
-<div class="main-content cols">
-
-    <div class="col-md-1">
-        <div class="left-content" >
-            <a href="#"><div class="left-content-box">
+    <div class="container-fluid">
+      <div id="myContainer" class="row">
+        <!--SIDEBAR CONTENT-->
+        <div class="col-sm-1 col-md-1 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active">
+              <a ng-click="showDBs()" ><div class="left-content-box">
                 <div><img src="modules/core/client/img/db.png"></div>
                 <div>DATABASE</div>
-            </div></a>
-            <a href="#"><div class="left-content-box">
-                <div><img src="modules/core/client/img/collection.png"></div>
-                <div>COLLECTION</div>
-            </div></a>
-            <a href="#"><div class="left-content-box">
-                <div><img src="modules/core/client/img/grids.png"></div>
-                <div>GRIDS</div>
-            </div></a>
-            <a href="#"><div class="left-content-box">
-                <div><img src="modules/core/client/img/help.png"></div>
-                <div>HELP</div>
-            </div></a>
-            <a href="#"><div class="left-content-box">
-                <div>	<img src="modules/core/client/img/console.png"></div>
-                <div>CONSOLE</div>
-            </div></a>
-            <a href="#"><div class="left-content-box">
-                <div><img src="modules/core/client/img/setting.png"></div>
-                <div>SETTINGS</div>
-            </div></a>
+                </div></a>
+            </li>
+            <li>
+              <a href="#"><div class="left-content-box">
+                  <div><img src="modules/core/client/img/collection.png"></div>
+                  <div>COLLECTION</div>
+              </div></a>
+            </li>
+            <li>
+              <a href="#"><div class="left-content-box">
+                  <div><img src="modules/core/client/img/grids.png"></div>
+                  <div>GRIDS</div>
+              </div></a>
+            </li>
+            <li>
+              <a href="#"><div class="left-content-box">
+                  <div><img src="modules/core/client/img/help.png"></div>
+                  <div>HELP</div>
+              </div></a>
+            </li>
+            <li>
+              <a href="#"><div class="left-content-box">
+                  <div> <img src="modules/core/client/img/console.png"></div>
+                  <div>CONSOLE</div>
+              </div></a>
+            </li>
+            <li>
+              <a href="#"><div class="left-content-box">
+                  <div><img src="modules/core/client/img/setting.png"></div>
+                  <div>SETTINGS</div>
+              </div></a>
+            </li>
+          </ul>         
         </div>
+        <!--MAIN BODY CONTENT-->
+        <div class="col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 main">
+          <div class="right-content-box">
+            <div class="right-content-box-header">
+                <div class="welcome-text"> Welcome To <span style="color:#fff">m</span><span class="viewer-text">Viewer</span></div>
+                <hr>
+                <div class="mongdb">A MONGODB MANAGEMENT TOOL</div>
+                <hr>
+                <div class="started-text">LET'S GET STARTED</div>
+            </div>
 
-    </div>
-    <div class="col-md-11">
-        <div class="right-content">
-            <div class="right-content-box">
-                <div class="right-content-box-header">
-                    <div class="welcome-text"> Welcome To <span style="color:#fff">m</span><span class="viewer-text">Viewer</span></div>
-                    <hr>
-                    <div class="mongdb">A MONGODB MANAGEMENT TOOL</div>
-                    <hr>
-                    <div class="started-text">LET'S GET STARTED</div>
+            <div class="right-content-footer">
+                <div class="btn-create-db" data-toggle="modal" data-target="#myModal"><input type="button" class="create-db-button" value="Create New Database" ng-click=open()></div>
+                <div class="plogo">
+                    <img src="modules/core/client/img/pramatiideas.png">
+                    <div class="Powered-by">POWERED BY</div>
                 </div>
+            </div>
+          </div>
+        
 
-                <div class="right-content-footer">
-                    <div class="btn-create-db" data-toggle="modal" data-target="#myModal"><input type="button" class="create-db-button" value="Create New Database" ng-click=open()></div>
-                    <div class="plogo">
-                        <img src="modules/core/client/img/pramatiideas.png">
-                        <div class="Powered-by">POWERED BY</div>
-                    </div>
 
+          <h2 class="sub-header">Documents View</h2>
+          <!--              //tree structure//        STARTS    this has dependency on the angular-json-tree module which need to be defined as dependency of mainApp                  -->
+          <div>
+            <json-tree object="someobj"></json-tree>
+          </div>
+
+          <!--              //TEMP TO BE MOVED TO A SEPERATE PARTIAL//        STARTS                      -->
+          <div name="dbListContainer">
+              <ul class="list-group">
+                  <li data-toggle="collapse" data-target="#demo" class="list-group-item" ng-repeat ="db in dbListArray">
+                      {{db.name}}<span class="badge">Size On Disk: {{db.sizeOnDisk}}</span>
+                       <a data-toggle="collapse" data-target="#myDiv">click me</a>
+                   <div class="collapse" id="myDiv"> lorem ipsum</div>
+                  </li>
+
+          <!--         <div class="accordion" id="accordion2">
+                      <div class="accordion-group" ng-repeat ="db in dbListArray">
+                          <div class="accordion-heading">
+                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                     {{db.name}}
+                              </a>
+                          </div>
+                          <div class="accordion-body collapse in">
+                              <div class="accordion-inner">
+                                  Size On Disk: {{db.sizeOnDisk}}
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+              </ul>
+          </div>
+
+              <!-- Example row of columns -->
+            <div class="row">
+              <div class="col-md-4">
+                <h2>Add New Collection</h2>
+                <p>Add a new collection to the current database.</p>
+                <p><a class="btn btn-default" href="#" role="button">Create Collection &raquo;</a></p>
+              </div>
+              <div class="col-md-4">
+                <h2>Use Database</h2>
+                <p>Use this database and view the collections. </p>
+                <p><a class="btn btn-default" href="#" role="button">Existing Collections &raquo;</a></p>
+             </div>
+              <div class="col-md-4">
+                <h2>Drop Databse</h2>
+                <p>Delete this Database. Careful!. This will be a permanent change.</p>
+                <p><a class="btn btn-default" href="#" role="button">Drop Database &raquo;</a></p>
+              </div>
+            </div>
+              <!--              //TEMP TO BE MOVED TO A SEPERATE PARTIAL//    ENDS                          -->
+        </div>
+      </div>
+    </div>
+
+    <!--popup-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
-
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 <script type="text/ng-template" id="newDBModal.html">
 <div class="new-db">
   <div class="modal-header">
