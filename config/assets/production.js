@@ -19,7 +19,8 @@ module.exports = {
         'public/lib/angular-file-upload/angular-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
 	'public/lib/angular-json-tree/angular-json-tree.min.js',
-	'public/lib/jquery/dist/jquery.min.js'
+	'public/lib/jquery/dist/jquery.min.js',
+	'public/lib/bootstrap/dist/js/bootstrap.min.js'
       ]
     },
     css: 'public/dist/application.min.css',

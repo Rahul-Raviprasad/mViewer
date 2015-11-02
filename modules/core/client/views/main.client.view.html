@@ -106,60 +106,55 @@
                     <div class="Powered-by">POWERED BY</div>
                 </div>
             </div>
-          </div>
+        </div>
         
-
+        <h2 class="sub-header">Databases</h2>
+        <div id="dbListContainer">
+            <ul class="list-group">
+                <li data-toggle="collapse" data-target="#demo" class="list-group-item" ng-repeat ="db in dbListArray">
+                    <div class="row">
+                    <span class="col-md-4">{{db.name}} </span>
+                    <div class="col-md-4">
+                    <a class="btn  btn-large btn-default" href="#" role="button">Use &raquo;</a>
+                    <a class="btn btn-default" href="#" role="button">Drop &raquo;</a>
+                    </div><span class="badge col-md-4">Size On Disk: {{db.sizeOnDisk}}</span>
+                </div>
+                </li>
+            </ul>
+        </div>
 
           <h2 class="sub-header">Documents View</h2>
-          <!--              //tree structure//        STARTS    this has dependency on the angular-json-tree module which need to be defined as dependency of mainApp                  -->
-          <div>
-            <json-tree object="someobj"></json-tree>
-          </div>
+         
 
           <!--              //TEMP TO BE MOVED TO A SEPERATE PARTIAL//        STARTS                      -->
-          <div name="dbListContainer">
-              <ul class="list-group">
-                  <li data-toggle="collapse" data-target="#demo" class="list-group-item" ng-repeat ="db in dbListArray">
-                      {{db.name}}<span class="badge">Size On Disk: {{db.sizeOnDisk}}</span>
-                       <a data-toggle="collapse" data-target="#myDiv">click me</a>
-                   <div class="collapse" id="myDiv"> lorem ipsum</div>
-                  </li>
 
-          <!--         <div class="accordion" id="accordion2">
-                      <div class="accordion-group" ng-repeat ="db in dbListArray">
-                          <div class="accordion-heading">
-                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                                     {{db.name}}
-                              </a>
-                          </div>
-                          <div class="accordion-body collapse in">
-                              <div class="accordion-inner">
-                                  Size On Disk: {{db.sizeOnDisk}}
-                              </div>
-                          </div>
-                      </div>
-                  </div> -->
-              </ul>
-          </div>
 
-              <!-- Example row of columns -->
-            <div class="row">
-              <div class="col-md-4">
-                <h2>Add New Collection</h2>
-                <p>Add a new collection to the current database.</p>
-                <p><a class="btn btn-default" href="#" role="button">Create Collection &raquo;</a></p>
+        <div id="exTab1" class="container">
+           <ul  class="nav nav-pills">
+              <li class="active">
+                 <a  href="#1a" data-toggle="tab">Text View</a>
+              </li>
+              <li><a href="#2a" data-toggle="tab">Tree View</a>
+              </li>
+           </ul>
+           <div class="tab-content clearfix">
+              <div class="tab-pane active" id="1a">
+                 <textarea rows="20">{
+      greetings: ["hi", "hello", "welcome"],
+      parent: {
+          child: "name",
+          age: 42
+      }
+    }</textarea>
               </div>
-              <div class="col-md-4">
-                <h2>Use Database</h2>
-                <p>Use this database and view the collections. </p>
-                <p><a class="btn btn-default" href="#" role="button">Existing Collections &raquo;</a></p>
-             </div>
-              <div class="col-md-4">
-                <h2>Drop Databse</h2>
-                <p>Delete this Database. Careful!. This will be a permanent change.</p>
-                <p><a class="btn btn-default" href="#" role="button">Drop Database &raquo;</a></p>
+              <div class="tab-pane" id="2a">
+                  <!--              //tree structure//        STARTS    this has dependency on the angular-json-tree module which need to be defined as dependency of mainApp                  -->
+                  <div>
+                    <json-tree object="someobj"></json-tree>
+                  </div>
               </div>
-            </div>
+           </div>
+        </div>
               <!--              //TEMP TO BE MOVED TO A SEPERATE PARTIAL//    ENDS                          -->
         </div>
       </div>

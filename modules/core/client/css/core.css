@@ -396,9 +396,34 @@ margin-left: 70px;
 margin-top: 35px;
 }
 
+#dbListContainer ul {
+    background-color: #578092;
+    color: white;
+    border-radius: 10px;
+}
+#dbListContainer ul li{
+  background-color: inherit;
+}
+
+/* Styles for the tabs showing plain text view and tree view*/
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
 
 
+/* remove border radius for the tab */
 
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
 
 /*-----------------------------------------original core---------------------------------------------original core*/
 
@@ -916,6 +941,7 @@ ul.nav-link-right li label {
 
 textarea {
     resize: none;
+    color: black;
 }
 
 .right-cont {

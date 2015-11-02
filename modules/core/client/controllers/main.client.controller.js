@@ -11,6 +11,11 @@ $scope.cancel = function () {
 angular.module('core').controller('MainController', ['$scope', '$http', '$location', '$modal',
   function ($scope, $http, $location, $uibModal) {
 
+    $http.get('http://localhost:3001/listDatabases').success(function(response){
+      console.log(response);
+      $scope.dbListArray = response.data; 
+    });
+
     $scope.someobj = {
       greetings: ["hi", "hello", "welcome"],
       parent: {
