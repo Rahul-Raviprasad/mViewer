@@ -1,13 +1,22 @@
 'use strict';
-angular.module('core').controller('ModalInstanceCtrl', function ($scope, $modalInstance) {
+angular.module('core').controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http) {
   $scope.ok = function () {
-  $modalInstance.close();
-};
+    $http({
+      method: 'GET',
+      url: '/connectToDB?database='+ $scope.databaseName,
+    }).then(function successCallback(response) {
+       console.log('connected to'+ $scope.databaseName);
+     }, function errorCallback(response) {
+       console.log(response);
+     });
+    $modalInstance.close();
+  };
 
-$scope.cancel = function () {
-  $modalInstance.dismiss('cancel');
-};
-});
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+})
+
 angular.module('core').controller('MainController', ['$scope', '$http', '$location', '$modal',
   function ($scope, $http, $location, $uibModal) {
 
@@ -24,26 +33,44 @@ angular.module('core').controller('MainController', ['$scope', '$http', '$locati
       }
     };
 
-$scope.open = function () {
-    var modalInstance = $uibModal.open({
+   $scope.open = function () {
+      var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'newDBModal.html',
           controller: 'ModalInstanceCtrl',
           size: 'small',
           resolve: {
           }
-        });
+     });
+  }
 
-    //     $http({
-    //       method: 'GET',
-    //       url: '/listDatabases',
-    //     }).then(function successCallback(response) {
-    //        console.log(JSON.stringify(response));
-    // }, function errorCallback(response) {
-    //   // called asynchronously if an error occurs
-    //   // or server returns response with an error status.
-    //   console.log('failure');
-    // });
-}
+  $http({
+    method: 'GET',
+    url: '/listDatabases?databaseName="test"',
+  }).then(function successCallback(response) {
+     $scope.dbListArray = response.data;
+  }, function errorCallback(response) {
+      console.log('failure');
+  });
+
+  $http({
+    method: 'GET',
+    url: '/connectToDB?databaseName=syam',
+  }).then(function successCallback(response) {
+     console.log('connected to syam');
+     $http({
+       method: 'post',
+       url: '/dropDatabase?databaseName=hellow',
+     }).then(function successCallback(response) {
+        console.log('dropped test2')
+     }, function errorCallback(response) {
+         console.log('failure');
+     });
+
+  }, function errorCallback(response) {
+      console.log('failure');
+  });
+
+
   }
 ]);
